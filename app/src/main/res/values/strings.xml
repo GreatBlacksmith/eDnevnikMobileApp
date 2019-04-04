@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">eDnevnik</string>
+    <string name="title_subject_detail">Subject Detail</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_name">Ime</string>
+    <string name="prompt_password">Lozinka</string>
+    <string name="action_sign_in">Prijava</string>
+    <string name="action_sign_in_short">Prijava</string>
+    <string name="error_invalid_email">Neispravno ime</string>
+    <string name="error_invalid_password">Neispravna lozinka</string>
+    <string name="error_incorrect_password">Neispravna lozinka</string>
+    <string name="error_field_required">Obavezno polje</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="preference_file_key">sharedPref</string>
+    <string name="preference_token_key">jwt</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+</resources>

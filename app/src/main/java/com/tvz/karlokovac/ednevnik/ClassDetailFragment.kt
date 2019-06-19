@@ -1,5 +1,6 @@
 package com.tvz.karlokovac.ednevnik
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
@@ -7,14 +8,13 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.tvz.karlokovac.ednevnik.model.Student
 import com.tvz.karlokovac.ednevnik.retrofit.retrofitSinglton
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_subject_detail.*
+import kotlinx.android.synthetic.main.activity_class_detail.*
 import kotlinx.android.synthetic.main.student_list_for_class_content.view.*
-import kotlinx.android.synthetic.main.subject_detail.view.*
+import kotlinx.android.synthetic.main.class_detail.view.*
 
 /**
  * A fragment representing a single Subject detail screen.
@@ -48,7 +48,7 @@ class ClassDetailFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(R.layout.subject_detail, container, false)
+        val rootView = inflater.inflate(R.layout.class_detail, container, false)
 
         retrofitSinglton.api.getStudentsForClass(retrofitSinglton.jwtToken, classId).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -61,8 +61,8 @@ class ClassDetailFragment : Fragment() {
 
     private fun handleResposne(response: List<Student>, rootView: View) {
         students = response
-        rootView.linLayout1.subject_detail.text = response[0].name
-        rootView.linLayout1.subject_detail.text = item
+//        rootView.linLayout1.subject_detail.text = response[0].name
+//        rootView.linLayout1.subject_detail.text = item
         rootView.linLayout1.student_list_for_class.apply {
             layoutManager = GridLayoutManager(activity, 3)
             adapter = StudentsAdapter(response) { student : Student -> studentClicked(student) }
@@ -70,7 +70,12 @@ class ClassDetailFragment : Fragment() {
     }
 
     private fun studentClicked(student: Student){
-        Toast.makeText(context, "Clicked: ${student.name}", Toast.LENGTH_SHORT).show()
+
+        val intent = Intent(context, StudentDetailsActivity::class.java).apply {
+            putExtra(StudentDetailsActivity.ARG_STUDENT_ID, student.studentId)
+        }
+
+        startActivity(intent)
     }
 
     private fun handleError(error: Throwable) {

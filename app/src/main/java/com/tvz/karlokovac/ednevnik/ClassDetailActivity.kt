@@ -1,6 +1,5 @@
 package com.tvz.karlokovac.ednevnik
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -9,7 +8,7 @@ import com.tvz.karlokovac.ednevnik.model.AClass
 import com.tvz.karlokovac.ednevnik.retrofit.retrofitSinglton
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_subject_detail.*
+import kotlinx.android.synthetic.main.activity_class_detail.*
 
 /**
  * An activity representing a single Subject detail screen. This
@@ -21,13 +20,13 @@ class ClassDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_subject_detail)
+        setContentView(R.layout.activity_class_detail)
         setSupportActionBar(detail_toolbar)
 
-        val sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-        val token = sharedPref.getString(getString(R.string.preference_token_key), "Test brate!")
+//        val sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+//        val token = sharedPref.getString(getString(R.string.preference_token_key), "Test brate!")
 
-        retrofitSinglton.api.getClasses(token).subscribeOn(Schedulers.io())
+        retrofitSinglton.api.getClasses(retrofitSinglton.jwtToken).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe (
                         { result -> handleResposne(savedInstanceState, result)},
@@ -47,8 +46,6 @@ class ClassDetailActivity : AppCompatActivity() {
         //
     }
     private fun handleResposne(savedInstanceState: Bundle?, response: List<AClass>){
-
-        println(response)
 
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity

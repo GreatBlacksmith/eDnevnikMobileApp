@@ -38,7 +38,7 @@
                 android:value="com.tvz.karlokovac.ednevnik.ClassListActivity" />
         </activity>
         <activity
-            android:name=".HomeActivity"
+            android:name=".StudentDetailsActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

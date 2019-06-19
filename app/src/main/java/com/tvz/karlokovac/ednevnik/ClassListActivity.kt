@@ -1,6 +1,5 @@
 package com.tvz.karlokovac.ednevnik
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -20,9 +19,9 @@ import com.tvz.karlokovac.ednevnik.model.AClass
 import com.tvz.karlokovac.ednevnik.retrofit.retrofitSinglton
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_subject_list.*
-import kotlinx.android.synthetic.main.subject_list_content.view.*
-import kotlinx.android.synthetic.main.subject_list.*
+import kotlinx.android.synthetic.main.activity_class_list.*
+import kotlinx.android.synthetic.main.class_list_content.view.*
+import kotlinx.android.synthetic.main.class_list.*
 
 /**
  * An activity representing a list of Pings. This activity
@@ -44,7 +43,7 @@ class ClassListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_subject_list)
+        setContentView(R.layout.activity_class_list)
 
         setSupportActionBar(toolbar)
         toolbar.title = title
@@ -85,8 +84,8 @@ class ClassListActivity : AppCompatActivity() {
             true
         }
 
-        retrofitSinglton.jwtToken = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
-                .getString(getString(R.string.preference_token_key), "Test brate!");
+//        retrofitSinglton.jwtToken = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+//                .getString(getString(R.string.preference_token_key), "Test brate!");
         retrofitSinglton.api.getClasses(retrofitSinglton.jwtToken).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe (
@@ -101,7 +100,7 @@ class ClassListActivity : AppCompatActivity() {
             twoPane = true
         }
 
-        //setupRecyclerView(subject_list)
+        //setupRecyclerView(class_list)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -162,7 +161,7 @@ class ClassListActivity : AppCompatActivity() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.subject_list_content, parent, false)
+                    .inflate(R.layout.class_list_content, parent, false)
             return ViewHolder(view)
         }
 

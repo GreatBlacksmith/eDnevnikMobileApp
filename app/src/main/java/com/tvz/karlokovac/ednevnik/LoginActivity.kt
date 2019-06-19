@@ -153,6 +153,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 
         if(response.code().equals(HttpURLConnection.HTTP_OK)) {
             println(response.raw().header("Authorization"))
+            retrofitSinglton.jwtToken = response.raw().header("Authorization").orEmpty()
             val sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
             with(sharedPref.edit()) {
                 putString(getString(R.string.preference_token_key), response.raw().header("Authorization"))

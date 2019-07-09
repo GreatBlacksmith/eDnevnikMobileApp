@@ -27,7 +27,7 @@
         <activity
             android:name=".ClassListActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ClassDetailActivity"
             android:label="@string/title_subject_detail"
@@ -40,7 +40,11 @@
         <activity
             android:name=".StudentDetailsActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".StudentSubjectDetailsActivity"
+            android:label="@string/title_activity_student_subject_details"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

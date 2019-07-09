@@ -1,9 +1,6 @@
 package com.tvz.karlokovac.ednevnik.retrofit
 
-import com.tvz.karlokovac.ednevnik.model.AClass
-import com.tvz.karlokovac.ednevnik.model.LoginUser
-import com.tvz.karlokovac.ednevnik.model.Student
-import com.tvz.karlokovac.ednevnik.model.Subject
+import com.tvz.karlokovac.ednevnik.model.*
 import io.reactivex.Observable
 import retrofit2.Response
 import retrofit2.http.*
@@ -24,5 +21,9 @@ interface EDnevnikApi {
 
     @GET("student/{id}")
     fun getStudentById(@Header("Authorization") jwt : String, @Path("id") studentId: Long): Observable<Student>
+
+    @GET("student-subject/{studentId}/{subjectId}")
+    fun getStudentSubjectByStudentIdAndSubjectId(@Header("Authorization") jwt: String, @Path("studentId") studentId : Long,
+                                                 @Path("subjectId") subjectId : Long): Observable<StudentSubject>
 }
 

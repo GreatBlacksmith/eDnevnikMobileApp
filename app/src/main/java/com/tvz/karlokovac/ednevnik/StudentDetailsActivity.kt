@@ -1,5 +1,6 @@
 package com.tvz.karlokovac.ednevnik
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -11,6 +12,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.widget.Toast
 import com.tvz.karlokovac.ednevnik.model.Student
+import com.tvz.karlokovac.ednevnik.model.StudentSubject
 import com.tvz.karlokovac.ednevnik.model.Subject
 import com.tvz.karlokovac.ednevnik.retrofit.retrofitSinglton
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -73,19 +75,30 @@ class StudentDetailsActivity : AppCompatActivity(), NavigationView.OnNavigationI
 
     private fun subjectClicked(subject: Subject){
 
-//        val intent = Intent(context, StudentDetailsActivity::class.java).apply {
-//            putExtra(StudentDetailsActivity.ARG_STUDENT_ID, student.studentId)
-//        }
+        val intent = Intent(applicationContext, StudentSubjectDetailsActivity::class.java).apply {
+            putExtra(StudentSubjectDetailsActivity.ARG_STUDENT_ID, student!!.studentId)
+            putExtra(StudentSubjectDetailsActivity.ARG_SUBJECT_ID, subject.subjectId)
+        }
+
+        startActivity(intent)
+
+//        //TODO add handlers
+//        retrofitSinglton.api.getStudentSubjectByStudentIdAndSubjectId(retrofitSinglton.jwtToken, student?.studentId!!, subject.subjectId)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe (
+//                        { result -> handleStudentSubjectResponse(result)},
+//                        { error -> handleSubjectsForStudentError(error) })
+    }
+
+//    private fun handleStudentSubjectResponse(result : StudentSubject){
+//        Toast.makeText(applicationContext, "Average: " + result.average, Toast.LENGTH_SHORT).show();
+//    }
 //
-//        startActivity(intent)
-
-        Toast.makeText(applicationContext, "Test", Toast.LENGTH_SHORT).show()
-    }
-
-    private fun handleSubjectsForStudentError(error: Throwable){
-        println(error.message)
-
-    }
+//    private fun handleSubjectsForStudentError(error: Throwable){
+//        println(error.message)
+//
+//    }
 
     override fun onBackPressed() {
         if (drawer_layout_student_details_activity.isDrawerOpen(GravityCompat.START)) {

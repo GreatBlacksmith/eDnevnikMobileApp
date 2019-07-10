@@ -5,4 +5,4 @@ enum class RowType {
     HEADER
 }
 
-data class StudentSubjectRow(var type: RowType, var grade: Grade?, var header: String?)
+data class StudentSubjectRow(var type: RowType, var grade: Grade?, var header: List<String>?)

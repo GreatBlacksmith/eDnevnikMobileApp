@@ -82,7 +82,7 @@ class StudentSubjectDetailsActivity : AppCompatActivity(), NavigationView.OnNavi
 
     private fun mapResponseToRow(gradeList: List<Grade>): ArrayList<StudentSubjectRow> {
         var rowList : ArrayList<StudentSubjectRow> = arrayListOf()
-        rowList.add(StudentSubjectRow(RowType.HEADER, null, "OCJENE"))
+        rowList.add(StudentSubjectRow(RowType.HEADER, null, listOf("VRSTA", "DATUM", "OCJENA")))
         for (grade in gradeList){
             rowList.add(StudentSubjectRow(RowType.ITEM, grade, null))
         }

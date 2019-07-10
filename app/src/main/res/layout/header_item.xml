@@ -3,13 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="10dp">
-
+    android:orientation="horizontal"
+    android:padding="5dp"
+    android:weightSum="3">
     <TextView
-        android:id="@+id/header_text"
+        android:id="@+id/header_type"
         style="@style/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Front Hazard" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        tools:text="Front Hazard"
+        android:layout_weight="1"/>
+    <TextView
+        android:id="@+id/header_date"
+        style="@style/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        tools:text="Front Hazard"
+        android:layout_weight="1"/>
+    <TextView
+        android:id="@+id/header_grade"
+        style="@style/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        tools:text="Front Hazard"
+        android:layout_weight="1"/>
 </LinearLayout>

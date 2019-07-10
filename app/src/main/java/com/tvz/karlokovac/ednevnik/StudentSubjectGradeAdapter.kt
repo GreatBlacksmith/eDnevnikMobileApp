@@ -27,7 +27,9 @@ class StudentSubjectGradeAdapter(private var gradeList: ArrayList<StudentSubject
             grade?.type?.let { holder.setText(R.id.stud_sub_row_type, it) }
             grade?.grade?.let { holder.setText(R.id.stud_sub_row_grade, it.toString()) }
         } else {
-            itemRow.header?.let { holder.setText(R.id.header_text, it) }
+            itemRow.header?.get(0)?.let { holder.setText(R.id.header_type, it) }
+            itemRow.header?.get(1)?.let { holder.setText(R.id.header_date, it) }
+            itemRow.header?.get(2)?.let { holder.setText(R.id.header_grade, it) }
         }
     }
 

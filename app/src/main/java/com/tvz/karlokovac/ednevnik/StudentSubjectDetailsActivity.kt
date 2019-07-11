@@ -23,6 +23,8 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_student_subject_details.*
 import kotlinx.android.synthetic.main.app_bar_student_subject_details.*
 import kotlinx.android.synthetic.main.content_student_subject_details.*
+import org.threeten.bp.LocalDateTime
+import org.threeten.bp.format.DateTimeFormatter
 
 class StudentSubjectDetailsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -82,8 +84,12 @@ class StudentSubjectDetailsActivity : AppCompatActivity(), NavigationView.OnNavi
 
     private fun mapResponseToRow(gradeList: List<Grade>): ArrayList<StudentSubjectRow> {
         var rowList : ArrayList<StudentSubjectRow> = arrayListOf()
-        rowList.add(StudentSubjectRow(RowType.HEADER, null, listOf("VRSTA", "DATUM", "OCJENA")))
+        rowList.add(StudentSubjectRow(RowType.HEADER, null, listOf(getString(R.string.header_type), getString(R.string.header_date),getString(R.string.header_grade))))
         for (grade in gradeList){
+            val localDateTime = LocalDateTime.parse(grade.dateEarned)
+            val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")
+            grade.dateEarned = formatter.format(localDateTime)
+
             rowList.add(StudentSubjectRow(RowType.ITEM, grade, null))
         }
 
@@ -95,12 +101,10 @@ class StudentSubjectDetailsActivity : AppCompatActivity(), NavigationView.OnNavi
     }
 
     private fun setLabels() {
-        studentsubject_classLabel.setText("Razred")
         studentsubject_classText.setText(studentSubject.className)
-        studentsubject_studentLabel.setText("Student")
         studentsubject_studentText.setText(studentSubject.studentName)
-        studentsubject_subjectLabel.setText("Predmet")
         studentsubject_subjectText.setText(studentSubject.subjectName)
+        studentsubject_average.setText(studentSubject.average.toString())
     }
 
     override fun onBackPressed() {

@@ -30,6 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/small_text_margin"
+                android:text="@string/class_label"
                 android:textAlignment="center"
                 android:textSize="16sp" />
 
@@ -54,6 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/small_text_margin"
+                android:text="@string/student_label"
                 android:textAlignment="center"
                 android:textSize="16sp" />
 
@@ -77,6 +79,7 @@
                 android:id="@+id/studentsubject_subjectLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@string/subject_label"
                 android:layout_margin="@dimen/small_text_margin"
                 android:textAlignment="center"
                 android:textSize="16sp" />
@@ -91,7 +94,7 @@
                 android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
-
+    <View style="@style/Divider" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -124,7 +127,7 @@
                 android:layout_margin="3dp"
                 android:padding="3dp"
                 android:textAlignment="viewEnd"
-                android:text="PROSJEK:"
+                android:text="@string/average"
                 android:textSize="20sp" />
         </LinearLayout>
 
@@ -134,6 +137,7 @@
             android:layout_weight="2">
 
             <TextView
+                android:id="@+id/studentsubject_average"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"

@@ -27,15 +27,35 @@
     <string name="title_activity_student_subject_details">StudentSubjectDetailsActivity</string>
 
 
-
     <!-- StudentSubject labels -->
     <string name="average">Prosjek</string>
 
     <string name="student_label">Student</string>
     <string name="subject_label">Predmet</string>
     <string name="class_label">Razred</string>
+    <string name="grade_label">Ocjena</string>
+    <string name="grade_type_label">Vrsta</string>
+    <string name="add_grade_button">Dodaj ocjenu</string>
+
 
     <string name="header_type">VRSTA</string>
     <string name="header_date">DATUM</string>
     <string name="header_grade">OCJENA</string>
+    <string name="title_activity_grade_input">grade_input</string>
+
+
+    <!-- sifrarnici -->
+    <string-array name="grade_type_list">
+        <item>Ispit</item>
+        <item>Usmeni</item>
+        <item>Zalaganje</item>
+    </string-array>
+
+    <string-array name="grade_list">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
 </resources>

@@ -1,5 +1,6 @@
 package com.tvz.karlokovac.ednevnik.retrofit
 
+import com.tvz.karlokovac.ednevnik.dto.StudSubjectRequest
 import com.tvz.karlokovac.ednevnik.model.*
 import io.reactivex.Observable
 import retrofit2.Response
@@ -25,5 +26,8 @@ interface EDnevnikApi {
     @GET("student-subject/{studentId}/{subjectId}")
     fun getStudentSubjectByStudentIdAndSubjectId(@Header("Authorization") jwt: String, @Path("studentId") studentId : Long,
                                                  @Path("subjectId") subjectId : Long): Observable<StudentSubject>
+
+    @POST("student-subject")
+    fun addGradeToStudentSubject(@Header("Authorization") jwt: String, @Body request : StudSubjectRequest): Observable<StudentSubject>
 }
 

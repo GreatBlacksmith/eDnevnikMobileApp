@@ -1,5 +1,6 @@
 package com.tvz.karlokovac.ednevnik
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
@@ -12,7 +13,9 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import com.tvz.karlokovac.ednevnik.GradeInputActivity.Companion.ARG_STUD_SUBJECT
 import com.tvz.karlokovac.ednevnik.R.id.studentsubject_classLabel
+import com.tvz.karlokovac.ednevnik.dto.StudSubjectDto
 import com.tvz.karlokovac.ednevnik.model.Grade
 import com.tvz.karlokovac.ednevnik.model.RowType
 import com.tvz.karlokovac.ednevnik.model.StudentSubject
@@ -46,6 +49,22 @@ class StudentSubjectDetailsActivity : AppCompatActivity(), NavigationView.OnNavi
         subjectId = intent.getLongExtra(ARG_SUBJECT_ID, 0L)
 
         fab.setOnClickListener { view ->
+
+            var studSubjectDto = StudSubjectDto(
+                    studentSubject.studentName,
+                    studentSubject.studentId,
+                    studentSubject.subjectName,
+                    studentSubject.subjectId,
+                    studentSubject.className
+                    )
+
+            val intent = Intent(applicationContext, GradeInputActivity::class.java).apply {
+                putExtra(ARG_STUD_SUBJECT, studSubjectDto)
+            }
+
+            startActivity(intent)
+
+            intent.putExtra(ARG_STUD_SUBJECT, studSubjectDto);
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }

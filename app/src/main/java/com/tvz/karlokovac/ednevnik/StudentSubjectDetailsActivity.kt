@@ -28,6 +28,9 @@ import kotlinx.android.synthetic.main.app_bar_student_subject_details.*
 import kotlinx.android.synthetic.main.content_student_subject_details.*
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.format.DateTimeFormatter
+import android.R.attr.data
+import android.app.Activity
+
 
 class StudentSubjectDetailsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -62,11 +65,7 @@ class StudentSubjectDetailsActivity : AppCompatActivity(), NavigationView.OnNavi
                 putExtra(ARG_STUD_SUBJECT, studSubjectDto)
             }
 
-            startActivity(intent)
-
-            intent.putExtra(ARG_STUD_SUBJECT, studSubjectDto);
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            startActivityForResult(intent, 1)
         }
 
         val toggle = ActionBarDrawerToggle(
@@ -74,21 +73,24 @@ class StudentSubjectDetailsActivity : AppCompatActivity(), NavigationView.OnNavi
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
+        getDataFromServer()
+
+        nav_view.setNavigationItemSelectedListener(this)
+    }
+
+    private fun getDataFromServer(){
         retrofitSinglton.api.getStudentSubjectByStudentIdAndSubjectId(retrofitSinglton.jwtToken, studentId, subjectId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { result -> handleStudentSubjectResponse(result) },
-                        { error -> handleStudenSubjectError(error) })
-
-        nav_view.setNavigationItemSelectedListener(this)
+                        { error -> handleStudentSubjectError(error) })
     }
 
     private fun handleStudentSubjectResponse(result: StudentSubject) {
         studentSubject = result;
         setLabels();
         setUpGradeList(result.grades)
-        Toast.makeText(applicationContext, "Date: " + result.grades.get(0).dateEarned, Toast.LENGTH_SHORT).show();
     }
 
     private fun setUpGradeList(grades: List<Grade>) {
@@ -103,7 +105,7 @@ class StudentSubjectDetailsActivity : AppCompatActivity(), NavigationView.OnNavi
 
     private fun mapResponseToRow(gradeList: List<Grade>): ArrayList<StudentSubjectRow> {
         var rowList : ArrayList<StudentSubjectRow> = arrayListOf()
-        rowList.add(StudentSubjectRow(RowType.HEADER, null, listOf(getString(R.string.header_type), getString(R.string.header_date),getString(R.string.header_grade))))
+        rowList.add(StudentSubjectRow(RowType.HEADER, null, listOf(getString(R.string.header_type), getString(R.string.header_date), getString(R.string.header_grade))))
         for (grade in gradeList){
             val localDateTime = LocalDateTime.parse(grade.dateEarned)
             val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")
@@ -115,7 +117,7 @@ class StudentSubjectDetailsActivity : AppCompatActivity(), NavigationView.OnNavi
         return rowList
     }
 
-    private fun handleStudenSubjectError(error: Throwable) {
+    private fun handleStudentSubjectError(error: Throwable) {
         println(error.message)
     }
 
@@ -175,6 +177,17 @@ class StudentSubjectDetailsActivity : AppCompatActivity(), NavigationView.OnNavi
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent){
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                studentId = data.getLongExtra(ARG_STUDENT_ID, 0L)
+                subjectId = data.getLongExtra(ARG_SUBJECT_ID, 0L)
+                getDataFromServer()
+            }
+        }
     }
 
     companion object {

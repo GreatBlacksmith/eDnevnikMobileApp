@@ -8,39 +8,49 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="4">
         <TextView
             android:id="@+id/label_subject_list_for_student_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Naziv:"
+            android:text="@string/subject_name"
+            android:textSize="16sp"
             android:layout_margin="@dimen/list_item_margin"
-            android:textAppearance="?attr/textAppearanceListItem"/>
+            android:gravity="end"
+            android:layout_weight="1"/>
 
         <TextView
             android:id="@+id/subject_list_for_student_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/list_item_margin"
-            android:textAppearance="?attr/textAppearanceListItem"/>
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_weight="3"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="4">
         <TextView
             android:id="@+id/label_subject_list_for_student_description"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Opis:"
+            android:text="@string/subject_description"
             android:layout_margin="@dimen/list_item_margin"
-            android:textAppearance="?attr/textAppearanceListItem"/>
+            android:textSize="16sp"
+            android:gravity="end"
+            android:layout_weight="1"/>
 
         <TextView
             android:id="@+id/subject_list_for_student_decription"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/list_item_margin"
-            android:textAppearance="?attr/textAppearanceListItem"/>
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_weight="3"/>
     </LinearLayout>
 </LinearLayout>

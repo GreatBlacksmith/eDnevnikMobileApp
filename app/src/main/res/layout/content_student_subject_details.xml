@@ -41,7 +41,7 @@
                 android:layout_margin="@dimen/small_text_margin"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="14sp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -66,7 +66,7 @@
                 android:layout_margin="@dimen/small_text_margin"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="14sp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -91,21 +91,10 @@
                 android:layout_margin="@dimen/small_text_margin"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="14sp" />
+                android:textSize="20sp" />
         </LinearLayout>
     </LinearLayout>
     <View style="@style/Divider" />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/stud_sub_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:visibility="gone" />
-    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -113,7 +102,7 @@
         android:layout_marginTop="10dp"
         android:padding="5dp"
         android:orientation="horizontal"
-        android:weightSum="3"
+        android:weightSum="2"
         android:baselineAligned="false">
 
         <LinearLayout
@@ -125,7 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
-                android:padding="3dp"
+                android:padding="5dp"
                 android:textAlignment="viewEnd"
                 android:text="@string/average"
                 android:textSize="20sp" />
@@ -134,18 +123,28 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2">
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/studentsubject_average"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
-                android:padding="3dp"
-                android:textAlignment="center"
-                android:text="TEST"
+                android:padding="5dp"
+                android:text="0.00"
                 android:textSize="20sp" />
         </LinearLayout>
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/stud_sub_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone" />
+    </RelativeLayout>
 </LinearLayout>

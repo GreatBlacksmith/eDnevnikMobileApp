@@ -27,13 +27,16 @@
                 android:minWidth="50dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_margin"
-                android:text="Ime:"
+                android:text="@string/student_name"
+                android:textSize="16sp"
                 android:textAlignment="viewEnd"/>
             <TextView
                 android:id="@+id/student_details_name_textview"
                 android:layout_width="wrap_content"
                 android:minWidth="50dp"
+                android:textSize="20sp"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
                 android:layout_margin="@dimen/text_margin"/>
         </android.support.v7.widget.LinearLayoutCompat>
         <android.support.v7.widget.LinearLayoutCompat
@@ -47,13 +50,16 @@
                 android:minWidth="50dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_margin"
-                android:text="Prezime:"
+                android:text="@string/student_last_name"
+                android:textSize="16sp"
                 android:textAlignment="viewEnd"/>
             <TextView
                 android:id="@+id/student_details_lastname_textview"
                 android:layout_width="wrap_content"
                 android:minWidth="50dp"
+                android:textSize="20sp"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
                 android:layout_margin="@dimen/text_margin"/>
         </android.support.v7.widget.LinearLayoutCompat>
 

@@ -16,10 +16,6 @@ import android.widget.Toast
 import com.tvz.karlokovac.ednevnik.GradeInputActivity.Companion.ARG_STUD_SUBJECT
 import com.tvz.karlokovac.ednevnik.R.id.studentsubject_classLabel
 import com.tvz.karlokovac.ednevnik.dto.StudSubjectDto
-import com.tvz.karlokovac.ednevnik.model.Grade
-import com.tvz.karlokovac.ednevnik.model.RowType
-import com.tvz.karlokovac.ednevnik.model.StudentSubject
-import com.tvz.karlokovac.ednevnik.model.StudentSubjectRow
 import com.tvz.karlokovac.ednevnik.retrofit.retrofitSinglton
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -30,12 +26,15 @@ import org.threeten.bp.LocalDateTime
 import org.threeten.bp.format.DateTimeFormatter
 import android.R.attr.data
 import android.app.Activity
+import com.tvz.karlokovac.ednevnik.model.*
 
 
 class StudentSubjectDetailsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     var studentId: Long = 0
     var subjectId: Long = 0
+    var classId: Long = 0
+    var className: String = "-"
     var gradeList: RecyclerView? = null
     lateinit var studentSubject: StudentSubject;
 
@@ -50,6 +49,14 @@ class StudentSubjectDetailsActivity : AppCompatActivity(), NavigationView.OnNavi
 
         studentId = intent.getLongExtra(ARG_STUDENT_ID, 0L)
         subjectId = intent.getLongExtra(ARG_SUBJECT_ID, 0L)
+        classId = intent.getLongExtra(ARG_CLASS_ID, 0L)
+
+        retrofitSinglton.api.getClassById(retrofitSinglton.jwtToken, classId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result -> handleClassResponse(result) },
+                        { error -> handleClassError(error) })
 
         fab.setOnClickListener { view ->
 
@@ -58,6 +65,7 @@ class StudentSubjectDetailsActivity : AppCompatActivity(), NavigationView.OnNavi
                     studentSubject.studentId,
                     studentSubject.subjectName,
                     studentSubject.subjectId,
+                    0L,
                     studentSubject.className
                     )
 
@@ -122,7 +130,7 @@ class StudentSubjectDetailsActivity : AppCompatActivity(), NavigationView.OnNavi
     }
 
     private fun setLabels() {
-        studentsubject_classText.setText(studentSubject.className)
+        studentsubject_classText.setText(className)
         studentsubject_studentText.setText(studentSubject.studentName)
         studentsubject_subjectText.setText(studentSubject.subjectName)
         studentsubject_average.setText(studentSubject.average.toString())
@@ -179,6 +187,15 @@ class StudentSubjectDetailsActivity : AppCompatActivity(), NavigationView.OnNavi
         return true
     }
 
+    fun handleClassError(error: Throwable) {
+        println(error.message)
+    }
+
+    fun handleClassResponse(aClass: AClass){
+        className = aClass.name
+//        add_subject_to_stud_class.text = studSubjectDto.className
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent){
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1) {
@@ -193,5 +210,6 @@ class StudentSubjectDetailsActivity : AppCompatActivity(), NavigationView.OnNavi
     companion object {
         const val ARG_STUDENT_ID = "student_id"
         const val ARG_SUBJECT_ID = "subject_id"
+        const val ARG_CLASS_ID = "class_id"
     }
 }

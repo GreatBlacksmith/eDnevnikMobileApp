@@ -17,8 +17,18 @@ interface EDnevnikApi {
     @GET("class/{id}/students")
     fun getStudentsForClass(@Header("Authorization") jwt : String, @Path("id") classId: Long) : Observable<List<Student>>
 
+    @GET("class/{id}")
+    fun getClassById(@Header("Authorization") jwt : String, @Path("id") classId: Long) : Observable<AClass>
+
     @GET("student/{id}/subjects")
     fun getSubjectsForStudent(@Header("Authorization") jwt: String, @Path("id") studentId: Long?): Observable<List<Subject>>
+
+    @GET("student/{id}/available-subjects")
+    fun getAvailableSubjectsForStudent(@Header("Authorization") jwt: String, @Path("id") studentId: Long?): Observable<List<Subject>>
+
+    @FormUrlEncoded
+    @POST("student/{id}/add-subject")
+    fun addSubjectToStudent(@Header("Authorization") jwt: String, @Path("id") studentId: Long, @Field("subjectId") subjectId: Long) : Observable<Boolean>
 
     @GET("student/{id}")
     fun getStudentById(@Header("Authorization") jwt : String, @Path("id") studentId: Long): Observable<Student>

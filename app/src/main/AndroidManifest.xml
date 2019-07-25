@@ -48,6 +48,11 @@
         <activity
             android:name=".GradeInputActivity"
             android:label="@string/title_activity_grade_input"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".AddSubjectToStudentActivity" />
+        <activity
+            android:name=".AddSubjectToStudent"
+            android:label="@string/title_activity_add_subject_to_student"
             android:theme="@style/AppTheme"></activity>
     </application>
 

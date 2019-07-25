@@ -44,6 +44,7 @@
     <string name="grade_label">Ocjena</string>
     <string name="grade_type_label">Vrsta</string>
     <string name="add_grade_button">Dodaj ocjenu</string>
+    <string name="add_subject_button">Dodaj predmet</string>
 
 
     <string name="header_type">VRSTA</string>
@@ -66,4 +67,5 @@
         <item>4</item>
         <item>5</item>
     </string-array>
+    <string name="title_activity_add_subject_to_student">AddSubjectToStudent</string>
 </resources>

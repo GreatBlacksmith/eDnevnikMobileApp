@@ -73,6 +73,7 @@ class ClassDetailFragment : Fragment() {
 
         val intent = Intent(context, StudentDetailsActivity::class.java).apply {
             putExtra(StudentDetailsActivity.ARG_STUDENT_ID, student.studentId)
+            putExtra(StudentDetailsActivity.ARG_CLASS_ID, classId)
         }
 
         startActivity(intent)

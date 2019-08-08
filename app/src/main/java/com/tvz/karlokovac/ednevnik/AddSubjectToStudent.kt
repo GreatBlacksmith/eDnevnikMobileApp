@@ -2,13 +2,11 @@ package com.tvz.karlokovac.ednevnik
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.widget.Spinner
-import com.tvz.karlokovac.ednevnik.adapters.CustomSpinnerAdapter
+import com.tvz.karlokovac.ednevnik.adapters.SubjectSpinnerAdapter
 import com.tvz.karlokovac.ednevnik.dto.StudSubjectDto
 import com.tvz.karlokovac.ednevnik.model.AClass
-import com.tvz.karlokovac.ednevnik.model.StudentSubject
 import com.tvz.karlokovac.ednevnik.model.Subject
 import com.tvz.karlokovac.ednevnik.retrofit.retrofitSinglton
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -44,7 +42,6 @@ class AddSubjectToStudent : AppCompatActivity() {
 
 
         add_subject_to_stud_button.setOnClickListener {
-            //TODO dodat poziv i hendlanje reponsa od backenda
             val selectedItem = subject_spinner.selectedItem as Subject
 
 
@@ -66,7 +63,7 @@ class AddSubjectToStudent : AppCompatActivity() {
 
     fun handleStudentSubjectResponse(result: List<Subject>) {
 
-        var spinnerAdapter = CustomSpinnerAdapter(applicationContext!!, result);
+        var spinnerAdapter = SubjectSpinnerAdapter(applicationContext!!, result);
 
         subject_spinner?.adapter = spinnerAdapter;
 

@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.tvz.karlokovac.ednevnik.R
+import com.tvz.karlokovac.ednevnik.model.Student
 import com.tvz.karlokovac.ednevnik.model.Subject
 
-class CustomSpinnerAdapter(val context: Context, var items: List<Subject>) : BaseAdapter() {
+class StudentSpinnerAdapter(val context: Context, var items: List<Student>) : BaseAdapter() {
 
     val mInflater: LayoutInflater = LayoutInflater.from(context)
 
@@ -17,7 +18,7 @@ class CustomSpinnerAdapter(val context: Context, var items: List<Subject>) : Bas
         val view: View
         val vh: ItemRowHolder
         if (convertView == null) {
-            view = mInflater.inflate(R.layout.subject_spinner_item, parent, false)
+            view = mInflater.inflate(R.layout.spinner_item, parent, false)
             vh = ItemRowHolder(view)
             view?.tag = vh
         } else {
@@ -51,7 +52,7 @@ class CustomSpinnerAdapter(val context: Context, var items: List<Subject>) : Bas
         val label: TextView
 
         init {
-            this.label = row?.findViewById(R.id.subject_spinner_item) as TextView
+            this.label = row?.findViewById(R.id.spinner_item) as TextView
         }
     }
 }

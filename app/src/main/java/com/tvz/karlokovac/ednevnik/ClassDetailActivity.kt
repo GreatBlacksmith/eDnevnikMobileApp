@@ -39,6 +39,16 @@ class ClassDetailActivity : AppCompatActivity() {
         // Show the Up button in the action bar.
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+
+        class_details_add_student.setOnClickListener() { view ->
+
+            val intent = Intent(applicationContext, AddStudentToClass::class.java).apply {
+                putExtra(AddStudentToClass.ARG_CLASS_ID, classId)
+            }
+
+            startActivityForResult(intent, 1)
+        }
+
         // savedInstanceState is non-null when there is fragment state
         // saved from previous configurations of this activity
         // (e.g. when rotating the screen from portrait to landscape).

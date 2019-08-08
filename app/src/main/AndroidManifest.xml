@@ -53,6 +53,10 @@
         <activity
             android:name=".AddSubjectToStudent"
             android:label="@string/title_activity_add_subject_to_student"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".AddStudentToClass"
+            android:label="@string/title_activity_add_student_to_class"
             android:theme="@style/AppTheme"></activity>
     </application>
 
